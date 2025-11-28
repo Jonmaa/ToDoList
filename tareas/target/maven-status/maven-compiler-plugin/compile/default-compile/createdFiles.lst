@@ -1,0 +1,6 @@
+com\todolist\tareas\TaskRepository.class
+com\todolist\tareas\SwaggerConfig.class
+com\todolist\tareas\TareasApplication.class
+com\todolist\tareas\TaskController.class
+com\todolist\tareas\Task.class
+com\todolist\tareas\TaskService.class

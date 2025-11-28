@@ -1,106 +1,36 @@
-# API de Gestión de Tareas
+# tareas — Backend
 
-API REST para gestionar tareas construida con **Spring Boot**, con **CRUD completo** y documentación interactiva mediante **Swagger/OpenAPI**.
+Breve guía para ejecutar el backend (Spring Boot) y los tests JUnit desde Windows PowerShell.
 
----
+**Requisitos**
+- JDK 17+ instalado y disponible en `PATH`.
+- No es necesario instalar Maven globalmente: se usa el wrapper (`mvnw.cmd`).
 
-## 🛠 Tecnologías usadas
-
-- Java 17
-- Spring Boot 3
-- Spring Web
-- Spring Data JPA
-- H2 Database (base de datos en memoria)
-- Springdoc OpenAPI (Swagger UI)
-- Maven
-
----
-
-## 🚀 Cómo correr la aplicación
-
-1. Clona el repositorio:
-
-```bash
-git clone <URL_DEL_REPO>
-cd toDoList/tareas
-```
-
-2. Ejecuta la aplicación (Windows PowerShell):
+**Ejecutar la aplicación (desarrollo)**
+Desde PowerShell, situarse en la carpeta `tareas` y ejecutar:
 
 ```powershell
-mvnw.cmd spring-boot:run
+.\mvnw.cmd spring-boot:run
 ```
 
-La API estará disponible en:
+La API arrancará por defecto en `http://localhost:8080`.
 
-```
-http://localhost:8080
-```
+**Ejecutar los tests JUnit**
+Para ejecutar todos los tests unitarios/integración desde PowerShell:
 
-La documentación Swagger estará en:
-
-```
-http://localhost:8080/swagger-ui.html
+```powershell
+.\mvnw.cmd test
 ```
 
----
+O con salida de depuración si necesitas más información:
 
-## 📋 Endpoints disponibles
-
-| Método | URL | Descripción |
-|--------|-----|-------------|
-| GET | `/tasks` | Obtener todas las tareas |
-| GET | `/tasks/{id}` | Obtener una tarea por ID |
-| POST | `/tasks` | Crear una nueva tarea |
-| PUT | `/tasks/{id}` | Actualizar una tarea existente |
-| DELETE | `/tasks/{id}` | Eliminar una tarea por ID |
-
----
-
-## 📌 Ejemplo de JSON para crear tarea
-
-```json
-{
-  "title": "Estudiar Spring Boot",
-  "description": "Terminar la API de tareas"
-}
+```powershell
+.\mvnw.cmd clean test -e
 ```
 
-El `id` se genera automáticamente y no debe enviarse al crear la tarea.
+Los tests de ejemplo se encuentran en `src/test/java/com/todolist/tareas/`.
 
----
+**Notas rápidas**
+- Si el IDE (VS Code) no detecta dependencias o muestra errores de imports, recarga el workspace Java: `Java: Clean the Java language server workspace` y luego `Developer: Reload Window`.
+- Swagger UI (si está configurado) suele estar en `http://localhost:8080/swagger-ui.html`.
 
-## 🔧 Ejemplo de JSON para actualizar tarea
-
-```json
-{
-  "title": "Estudiar Spring Boot",
-  "description": "Actualizar la descripción",
-  "completed": true
-}
-```
-
----
-
-## 💡 Notas
-
-- La base de datos H2 se reinicia cada vez que se reinicia la aplicación.
-- Swagger UI permite probar todos los endpoints directamente desde el navegador.
-- El campo `id` es solo de lectura y no debe enviarse en POST.
-
----
-
-## 📂 Estructura del proyecto
-
-```
-src/
- └── main/
-      ├── java/com/todolist/tareas
-      │    ├── Task.java
-      │    ├── TaskRepository.java
-      │    ├── TaskService.java
-      │    ├── TaskController.java
-      │    └── SwaggerConfig.java
-      └── resources/
-           └── application.properties
-```
